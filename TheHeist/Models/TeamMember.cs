@@ -18,7 +18,7 @@ namespace TheHeist.Models
         public int SkillLevel { get; set; }
         public double CourageFactor { get; set; }
 
-        public void Print()
+        public void MemberDetails()
         {
             var output = ($@"
 _________________________
