@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TheHeist.Models;
 
 namespace TheHeist
@@ -9,6 +10,7 @@ namespace TheHeist
         {
             Console.WriteLine("Plan Your Heist!");
 
+            var teamQuestion = "Enter your Heist Team's name";
             var question1 = "Enter the team member's name:";
             var question2 = "Enter the team member's skill level";
             var question3 = "Enter the team member's courage level";
@@ -17,8 +19,14 @@ namespace TheHeist
             double parsedCourage = 0;
             bool successful = false;
 
+            Console.WriteLine(teamQuestion);
+            var teamName = Console.ReadLine();
+            HeistTeam team = new HeistTeam(teamName);
+
             Console.WriteLine(question1);
             var name = Console.ReadLine();
+
+            while (name != "") {
 
             while (!successful) {
             Console.WriteLine(question2);
@@ -34,9 +42,18 @@ namespace TheHeist
             successful = double.TryParse(courage, out parsedCourage);
             }
 
+            successful = false;
+
             var teammate = new TeamMember(name, parsedSkill, parsedCourage);
 
-            teammate.Print();
+            team.AddTeamMember(teammate);
+
+            Console.WriteLine();
+            Console.WriteLine(question1);
+            name = Console.ReadLine();
+
+            }
+            team.ShowTeam();
+            }
         }
     }
-}
